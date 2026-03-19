@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Verse — Good Food, Great Vibes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+
+  <!-- ── NAV ── -->
+  <nav id="nav">
+    <a class="brand" href="#">Food Verse<em>.</em></a>
+    <div class="nav-center">
+      <div class="nav-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="searchInput" placeholder="Search anything..." autocomplete="off">
+        <div class="search-drop" id="searchResults"></div>
+      </div>
+    </div>
+    <div class="nav-end">
+      <button class="nav-icon-btn" onclick="showWishlist()" title="Saved">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span id="wishCount">0</span>
+      </button>
+      <button class="nav-signin-btn" onclick="window.location.href='welcome.html'">Sign In</button>
+      <button class="nav-cart-pill" onclick="toggleCart()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        Cart
+        <span class="cart-pill-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg-shapes">
+      <div class="hbs hbs-1"></div>
+      <div class="hbs hbs-2"></div>
+      <div class="hbs hbs-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hb-dot"></span>
+        Delivering in 20 mins · Mumbai
+      </div>
+      <h1 class="hero-title">
+        Great food<br>
+        finds you<br>
+        <em>right here.</em>
+      </h1>
+      <p class="hero-desc">
+        200+ restaurants, real chefs, zero compromises.<br>
+        Order what you love and get it fast.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-main" onclick="document.getElementById('mood').scrollIntoView({behavior:'smooth'})">
+          Find my meal
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="btn-ghost" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+          Browse menu
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="hs-item">
+          <strong data-target="200" data-suffix="+">0</strong>
+          <span>Restaurants</span>
+        </div>
+        <div class="hs-sep"></div>
+        <div class="hs-item">
+          <strong data-target="20" data-suffix=" min">0</strong>
+          <span>Avg delivery</span>
+        </div>
+        <div class="hs-sep"></div>
+        <div class="hs-item">
+          <strong data-target="4.9" data-dec="1" data-suffix="★">0</strong>
+          <span>Rating</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-cards-cluster">
+      <div class="hcc-card hcc-1">
+        <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&h=400&fit=crop" alt="Pizza">
+        <div class="hcc-info">
+          <span class="hcc-name">Margherita Royale</span>
+          <span class="hcc-price">₹349</span>
+        </div>
+      </div>
+      <div class="hcc-card hcc-2">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&h=400&fit=crop" alt="Burger">
+        <div class="hcc-info">
+          <span class="hcc-name">BBQ Smoke Burger</span>
+          <span class="hcc-price">₹289</span>
+        </div>
+      </div>
+      <div class="hcc-card hcc-3">
+        <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&h=380&fit=crop" alt="Spicy Peprroni">
+        <div class="hcc-info">
+          <span class="hcc-name">Spicy Peprroni</span>
+          <span class="hcc-price">₹459</span>
+        </div>
+      </div>
+      <div class="hcc-floating-tag">🍕 Most ordered today</div>
+      <div class="hcc-floating-rating">⭐ 4.9 · 2.4k reviews</div>
+    </div>
+  </section>
+
+  <!-- ── MOOD SECTION ── -->
+  <section class="mood-section" id="mood">
+    <div class="mood-header">
+      <div class="section-label">Something new ✦</div>
+      <h2 class="mood-title">What's your <em>mood</em> right now?</h2>
+      <p class="mood-sub">Tell us how you feel. We'll find the perfect dish.</p>
+    </div>
+    <div class="mood-cards" id="moodCards">
+      <div class="mood-card" data-mood="cozy" onclick="selectMood(this,'cozy')">
+        <div class="mc-emoji">🛋️</div>
+        <div class="mc-name">Cozy & Lazy</div>
+        <div class="mc-desc">Comfort food, no effort</div>
+        <div class="mc-glow"></div>
+      </div>
+      <div class="mood-card" data-mood="spicy" onclick="selectMood(this,'spicy')">
+        <div class="mc-emoji">🌶️</div>
+        <div class="mc-name">Spice Me Up</div>
+        <div class="mc-desc">Bold, hot, adventurous</div>
+        <div class="mc-glow"></div>
+      </div>
+      <div class="mood-card" data-mood="healthy" onclick="selectMood(this,'healthy')">
+        <div class="mc-emoji">🌿</div>
+        <div class="mc-name">Clean & Fresh</div>
+        <div class="mc-desc">Light, wholesome, good</div>
+        <div class="mc-glow"></div>
+      </div>
+      <div class="mood-card" data-mood="party" onclick="selectMood(this,'party')">
+        <div class="mc-emoji">🎉</div>
+        <div class="mc-name">Party Mode</div>
+        <div class="mc-desc">Share with the gang</div>
+        <div class="mc-glow"></div>
+      </div>
+      <div class="mood-card" data-mood="sweet" onclick="selectMood(this,'sweet')">
+        <div class="mc-emoji">🍰</div>
+        <div class="mc-name">Sweet Tooth</div>
+        <div class="mc-desc">Desserts & indulgence</div>
+        <div class="mc-glow"></div>
+      </div>
+    </div>
+    <div class="mood-result" id="moodResult"></div>
+  </section>
+
+  <!-- ── MENU ── -->
+  <section class="menu-section" id="menu">
+    <div class="menu-top">
+      <div>
+        <div class="section-label">Full menu ✦</div>
+        <h2 class="menu-title">What are you <em>craving?</em></h2>
+      </div>
+      <button class="saved-link" onclick="showWishlist()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Saved (<span id="wishlistCount">0</span>)
+      </button>
+    </div>
+    <div class="cats-wrap" id="catList"></div>
+    <div class="toolbar-row">
+      <select class="sort-pick" id="sortSelect" onchange="applySort()">
+        <option value="default">Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating">Top Rated</option>
+        <option value="fast">Fastest</option>
+        <option value="az">A → Z</option>
+      </select>
+      <div class="view-switch">
+        <button class="vs-btn active" id="gbtn" onclick="setView('grid')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </button>
+        <button class="vs-btn" id="lbtn" onclick="setView('list')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="food-grid" id="foodGrid"></div>
+  </section>
+
+  <!-- ── PROMO ── -->
+  <div class="promo-band">
+    <div class="pb-left">
+      <div class="pb-tag">Today only</div>
+      <div class="pb-headline">First order?<br><em>Save 30%.</em></div>
+      <div class="pb-note">No minimum. No catch. Just good food at better prices.</div>
+    </div>
+    <div class="pb-code-wrap" onclick="copyCode('ZEST30')">
+      <div class="pb-code-label">Use code</div>
+      <div class="pb-code">ZEST30</div>
+      <div class="pb-copy-hint">tap to copy</div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-brand">Food Verse<em>.</em></div>
+        <p class="footer-tagline">Feed your mood, every single day.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">Company</div>
+        <a href="#">About us</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">For partners</div>
+        <a href="#">List your restaurant</a>
+        <a href="#">Partner portal</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">Legal</div>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Food Verse Foods Inc.</span>
+    </div>
+  </footer>
+
+  <!-- ── CART ── -->
+  <div class="scrim" id="cartOverlay" onclick="toggleCart()"></div>
+  <aside class="cart-drawer" id="cartSidebar">
+    <div class="cd-head">
+      <span class="cd-title">Your order</span>
+      <button class="cd-close" onclick="toggleCart()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="cd-body" id="cartItems">
+      <div class="cd-empty">
+        <div class="cde-img">🛒</div>
+        <div class="cde-text">Nothing here yet!<br>Find something delicious.</div>
+        <button class="cde-cta" onclick="toggleCart();document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Browse Menu →</button>
+      </div>
+    </div>
+    <div class="cd-promo" id="promoSection" style="display:none">
+      <div class="cdp-row">
+        <input class="cdp-inp" id="promoInput" placeholder="Promo code" maxlength="12">
+        <button class="cdp-btn" onclick="applyPromo()">Apply</button>
+      </div>
+      <div class="cdp-msg" id="promoMsg"></div>
+    </div>
+    <div class="cd-foot" id="cartFooter" style="display:none">
+      <div class="cdf-row"><span>Subtotal</span><span id="sub">₹0</span></div>
+      <div class="cdf-row green" id="discRow" style="display:none"><span>Discount 🎉</span><span id="discAmt">-₹0</span></div>
+      <div class="cdf-row"><span>Delivery</span><span id="delivAmt">₹40</span></div>
+      <div class="cdf-row"><span>Tax (5%)</span><span id="taxAmt">₹0</span></div>
+      <div class="cdf-row cdf-total"><span>Total</span><span id="totalAmt">₹0</span></div>
+      <button class="cdf-checkout" onclick="goToPayment()">Place order →</button>
+    </div>
+  </aside>
+
+  <!-- ── MODAL ── -->
+  <div class="modal-scrim" id="modalOverlay" onclick="closeMbg(event)">
+    <div class="modal-card">
+      <button class="mc-close" onclick="closeModal()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="mc-img" id="modalImg"></div>
+      <div class="mc-body">
+        <div class="mc-top">
+          <div>
+            <div class="mc-name" id="mName"></div>
+            <div class="mc-meta" id="mStats"></div>
+          </div>
+          <div class="mc-price" id="mPrice"></div>
+        </div>
+        <div class="mc-desc" id="mDesc"></div>
+        <div class="mc-tags" id="mTags"></div>
+        <div class="mc-qty-row">
+          <span>Quantity</span>
+          <div class="mc-qty-ctrl">
+            <button onclick="mQty(-1)">−</button>
+            <span id="mQtyNum">1</span>
+            <button onclick="mQty(1)">+</button>
+          </div>
+        </div>
+        <button class="mc-add-btn" onclick="modalAdd()">
+          Add to cart · ₹<span id="mTotal">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TRACKER ── -->
+  <div class="tracker-scrim" id="trackerOverlay">
+    <div class="tracker-panel">
+      <div class="tp-emoji" id="tEmoji">📋</div>
+      <div class="tp-title">Order confirmed!</div>
+      <div class="tp-sub">Sit tight, your food is on its way 🚀</div>
+      <div class="tp-steps" id="tSteps"></div>
+      <div class="tp-eta" id="tEta">Arriving in ~20 min</div>
+      <button class="tp-done" onclick="closeTracker()">Awesome, thanks!</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">Done!</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
